@@ -1,27 +1,30 @@
 class ProductManager {
 
         constructor (Products) {
-        this.ID = []
-        this.title = []
-        this.description = []
-        this.price = []
-        this.thumbnail = []
-        this.code = []
-        this.stock = []
+            this.products = []
         }
+        // constructor (Products) {
+        // this.ID = []
+        // this.title = []
+        // this.description = []
+        // this.price = []
+        // this.thumbnail = []
+        // this.code = []
+        // this.stock = []
+        // }
 
         getProducts = () => {return this.Products}
 
         getNextID = () => {
-            const count = this.products.length
-            if (count > 0) {
+            const count = this.products.length +1}
+            // if (count > 0) {
 
-                return this.products[count - 1].ID + 1
-            }
-            else {return 1}
+            //     return this.products[count - 1].ID + 1
+            // }
+            // else {return 1}
 
 
-        addProduct = (ID, title , description, price, thumbnail, code, stock) => {
+        addProduct = (title , description, price, thumbnail, code, stock) => {
             const Product = {
                 id: this.getNextID(),
                 title,
@@ -31,18 +34,34 @@ class ProductManager {
                 code,
                 stock,                
             }
-            this.Products.push(Product)
+            if(title || description || price || thumbnail || code || stock) {
+                console.log("Todos los campos son obligatorios")
+                }
+                const ProductCode = (code) => {return !this.products.some((Product) => Product.code === code);};
+                if (ProductCode(code)) {
+                    console.log("El code ya esta en uso");
+                    return;
+                    }
+                
+                
+
+
+
+            this.products.push(Product)
         }
 
-    }
-
-    // const ProductCode = Products.reduce((result, obj) => {
-    //     Object.keys(obj).forEach((v) => {
-    //         if (!result.includes(v)) result.push(v);
-    //     });
+        getProductsById = (BusquedaId) => {return this.products.id}
+    // ProductCode = products.reduce((result, obj) => {
+    // Object.keys(obj).forEach((v) => {
+    // if (!result.includes(v)) result.push(v);
+    // });
     
-    //     return result;
+    // return result;
     // }, []);
+
+    
+}   
+
 
 
     const Manager = new ProductManager();
